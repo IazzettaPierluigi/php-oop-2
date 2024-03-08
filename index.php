@@ -1,4 +1,32 @@
-<?php ?>
+<?php
+
+// Definizione delle classi
+
+class Prodotto
+{
+    public $id;
+    public $nome;
+    public $descrizione;
+    public $prezzo;
+    public $immagine;
+    public $categoria;
+    public $tipoArticolo;
+
+    function __construct($id, $nome, $descrizione, $prezzo, $immagine, $categoria, $tipoArticolo)
+    {
+        $this->id = $id;
+        $this->nome = $nome;
+        $this->descrizione = $descrizione;
+        $this->prezzo = $prezzo;
+        $this->immagine = $immagine;
+        $this->categoria = $categoria;
+        $this->tipoArticolo = $tipoArticolo;
+    }
+}
+
+
+?>
+
 
 
 <!DOCTYPE html>
@@ -7,7 +35,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Shop Online</title>
 
     <!-- my style -->
     <link rel="stylesheet" href="./assets/css/style.css">
@@ -18,10 +46,11 @@
 </head>
 
 <body>
+    <div class="container">
+        <div class="row">
 
-
-
-
+        </div>
+    </div>
 
     <!-- bootstrap script -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
