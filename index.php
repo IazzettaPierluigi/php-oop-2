@@ -24,6 +24,15 @@ class Prodotto
     }
 }
 
+// Definizione degli oggetti
+
+$prodotti = array(
+    new Prodotto(1, "Cibo per cani", "Cibo gustoso e nutriente per cani", 10.99, "./assets/img/cibo_cani.jpg", "Cani", "Cibo"),
+    new Prodotto(2, "Gioco per gatti", "Divertente gioco per intrattenere il tuo gatto", 5.99, "./assets/img/gioco_gatti.jpg", "Gatti", "Gioco"),
+    new Prodotto(3, "Cuccia per cani", "Comoda cuccia per il tuo cane", 25.99, "./assets/img/cuccia_cani.jpg", "Cani", "Cuccia")
+);
+
+
 
 ?>
 
@@ -48,7 +57,21 @@ class Prodotto
 <body>
     <div class="container">
         <div class="row">
-
+            <?php foreach ($prodotti as $prodotto) : ?>
+                <div class="col-md-4">
+                    <div class="card mb-3">
+                        <img src="<?php echo $prodotto->immagine; ?>" class="card-img-top" alt="<?php echo $prodotto->nome; ?>">
+                        <div class="card-body">
+                            <h5 class="card-title"><?php echo $prodotto->nome; ?></h5>
+                            <p class="card-text"><?php echo $prodotto->descrizione; ?></p>
+                            <p class="card-text">Prezzo: $<?php echo $prodotto->prezzo; ?></p>
+                            <p class="card-text">Categoria: <?php echo $prodotto->categoria; ?></p>
+                            <p class="card-text">Tipo di articolo: <?php echo $prodotto->tipoArticolo; ?></p>
+                            <a href="#" class="btn btn-primary">Aggiungi al carrello</a>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
         </div>
     </div>
 
