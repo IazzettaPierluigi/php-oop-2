@@ -1,8 +1,19 @@
 <?php
 
+// Definizione del trait
+trait Loggable
+{
+    public function log($message)
+    {
+        echo "[" . date('Y-m-d H:i:s') . "] " . $message . "\n";
+    }
+}
+
 // Definizione della classe base Prodotto
 class Prodotto
 {
+    use Loggable; // Utilizzo del trait Loggable
+
     public $id;
     public $nome;
     public $descrizione;
@@ -20,6 +31,9 @@ class Prodotto
         $this->immagine = $immagine;
         $this->categoria = $categoria;
         $this->tipoArticolo = $tipoArticolo;
+
+        // Esempio di utilizzo del metodo log del trait Loggable
+        $this->log("Prodotto creato: $nome");
     }
 }
 
@@ -51,6 +65,8 @@ class ProdottoGatto extends Prodotto
 $prodotti = array(
     new ProdottoCane(1, "Cibo per cani", "Cibo gustoso e nutriente per cani", 10.99, "./assets/img/cibo_cani.jpg", "Cani", "Cibo", "Pastore tedesco"),
     new ProdottoGatto(2, "Gioco per gatti", "Divertente gioco per intrattenere il tuo gatto", 5.99, "./assets/img/gioco_gatti.jpg", "Gatti", "Gioco", "Siberiano"),
+    new ProdottoCane(3, "Cuccia per cani", "Comoda cuccia per il tuo cane", 25.99, "./assets/img/cuccia_cani.jpg", "Cani", "Cuccia", "Labrador"),
+
     new ProdottoCane(3, "Cuccia per cani", "Comoda cuccia per il tuo cane", 25.99, "./assets/img/cuccia_cani.jpg", "Cani", "Cuccia", "Labrador")
 );
 
@@ -97,4 +113,7 @@ $prodotti = array(
     </div>
 
     <!-- bootstrap script -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1"></script>
+</body>
+
+</html>
