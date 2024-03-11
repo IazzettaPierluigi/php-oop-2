@@ -1,7 +1,6 @@
 <?php
 
-// Definizione delle classi
-
+// Definizione della classe base Prodotto
 class Prodotto
 {
     public $id;
@@ -24,19 +23,38 @@ class Prodotto
     }
 }
 
-// Definizione degli oggetti
+// Definizione della sottoclasse ProdottoCane che estende Prodotto
+class ProdottoCane extends Prodotto
+{
+    public $razza;
 
+    function __construct($id, $nome, $descrizione, $prezzo, $immagine, $categoria, $tipoArticolo, $razza)
+    {
+        parent::__construct($id, $nome, $descrizione, $prezzo, $immagine, $categoria, $tipoArticolo);
+        $this->razza = $razza;
+    }
+}
+
+// Definizione della sottoclasse ProdottoGatto che estende Prodotto
+class ProdottoGatto extends Prodotto
+{
+    public $razza;
+
+    function __construct($id, $nome, $descrizione, $prezzo, $immagine, $categoria, $tipoArticolo, $razza)
+    {
+        parent::__construct($id, $nome, $descrizione, $prezzo, $immagine, $categoria, $tipoArticolo);
+        $this->razza = $razza;
+    }
+}
+
+// Definizione degli oggetti
 $prodotti = array(
-    new Prodotto(1, "Cibo per cani", "Cibo gustoso e nutriente per cani", 10.99, "./assets/img/cibo_cani.jpg", "Cani", "Cibo"),
-    new Prodotto(2, "Gioco per gatti", "Divertente gioco per intrattenere il tuo gatto", 5.99, "./assets/img/gioco_gatti.jpg", "Gatti", "Gioco"),
-    new Prodotto(3, "Cuccia per cani", "Comoda cuccia per il tuo cane", 25.99, "./assets/img/cuccia_cani.jpg", "Cani", "Cuccia")
+    new ProdottoCane(1, "Cibo per cani", "Cibo gustoso e nutriente per cani", 10.99, "./assets/img/cibo_cani.jpg", "Cani", "Cibo", "Pastore tedesco"),
+    new ProdottoGatto(2, "Gioco per gatti", "Divertente gioco per intrattenere il tuo gatto", 5.99, "./assets/img/gioco_gatti.jpg", "Gatti", "Gioco", "Siberiano"),
+    new ProdottoCane(3, "Cuccia per cani", "Comoda cuccia per il tuo cane", 25.99, "./assets/img/cuccia_cani.jpg", "Cani", "Cuccia", "Labrador")
 );
 
-
-
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -67,6 +85,9 @@ $prodotti = array(
                             <p class="card-text">Prezzo: $<?php echo $prodotto->prezzo; ?></p>
                             <p class="card-text">Categoria: <?php echo $prodotto->categoria; ?></p>
                             <p class="card-text">Tipo di articolo: <?php echo $prodotto->tipoArticolo; ?></p>
+                            <?php if ($prodotto instanceof ProdottoCane || $prodotto instanceof ProdottoGatto) : ?>
+                                <p class="card-text">Razza: <?php echo $prodotto->razza; ?></p>
+                            <?php endif; ?>
                             <a href="#" class="btn btn-primary">Aggiungi al carrello</a>
                         </div>
                     </div>
@@ -76,7 +97,4 @@ $prodotti = array(
     </div>
 
     <!-- bootstrap script -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-</body>
-
-</html>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1
