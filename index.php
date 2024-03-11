@@ -24,6 +24,10 @@ class Prodotto
 
     function __construct($id, $nome, $descrizione, $prezzo, $immagine, $categoria, $tipoArticolo)
     {
+        if (!is_numeric($id) || $id <= 0) {
+            throw new InvalidArgumentException("L'ID deve essere un numero positivo.");
+        }
+
         $this->id = $id;
         $this->nome = $nome;
         $this->descrizione = $descrizione;
@@ -61,14 +65,16 @@ class ProdottoGatto extends Prodotto
     }
 }
 
-// Definizione degli oggetti
-$prodotti = array(
-    new ProdottoCane(1, "Cibo per cani", "Cibo gustoso e nutriente per cani", 10.99, "./assets/img/cibo_cani.jpg", "Cani", "Cibo", "Pastore tedesco"),
-    new ProdottoGatto(2, "Gioco per gatti", "Divertente gioco per intrattenere il tuo gatto", 5.99, "./assets/img/gioco_gatti.jpg", "Gatti", "Gioco", "Siberiano"),
-    new ProdottoCane(3, "Cuccia per cani", "Comoda cuccia per il tuo cane", 25.99, "./assets/img/cuccia_cani.jpg", "Cani", "Cuccia", "Labrador"),
-
-    new ProdottoCane(3, "Cuccia per cani", "Comoda cuccia per il tuo cane", 25.99, "./assets/img/cuccia_cani.jpg", "Cani", "Cuccia", "Labrador")
-);
+// Definizione degli oggetti e try e catch
+try {
+    $prodotti = array(
+        new ProdottoCane(1, "Cibo per cani", "Cibo gustoso e nutriente per cani", 10.99, "./assets/img/cibo_cani.jpg", "Cani", "Cibo", "Pastore tedesco"),
+        new ProdottoGatto(2, "Gioco per gatti", "Divertente gioco per intrattenere il tuo gatto", 5.99, "./assets/img/gioco_gatti.jpg", "Gatti", "Gioco", "Siberiano"),
+        new ProdottoCane(4, "Cuccia per cani", "Comoda cuccia per il tuo cane", 25.99, "./assets/img/cuccia_cani.jpg", "Cani", "Cuccia", "Labrador")
+    );
+} catch (InvalidArgumentException $e) {
+    echo "Errore: " . $e->getMessage();
+}
 
 ?>
 
